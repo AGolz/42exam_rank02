@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdio.h>
 
 void	repeat_alpha(char *str)
 {

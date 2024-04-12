@@ -1,49 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   repeat_alpha.c                                     :+:      :+:    :+:   */
+/*   ft_strcspn.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elmaksim <elmaksim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 05:09:12 by elmaksim          #+#    #+#             */
-/*   Updated: 2024/04/12 05:36:32 by elmaksim         ###   ########.fr       */
+/*   Created: 2024/04/12 07:22:29 by elmaksim          #+#    #+#             */
+/*   Updated: 2024/04/12 07:22:31 by elmaksim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
 
-void	repeat_alpha(char *str)
+size_t	ft_strcspn(const char *s, const char *reject)
 {
-	int	i;
-	int	n;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
-	n = 0;
-	while (str[i])
+	while (s[i])
 	{
-		if (str[i] >= 'a' && str[i] <= 'z')
-			n = str[i] - 96;
-		else if (str[i] >= 'A' && str[i] <= 'Z')
-			n = str[i] - 64;
-		if (n != 0)
+		j = 0;
+		while (reject[j])
 		{
-			while (n != 0)
-			{
-				write(1, &str[i], 1);
-				n--;
-			}
+			if (s[i] == reject[j])
+				return (i);
+			j++;
 		}
-		else
-			write(1, &str[i], 1);
-		n = 0;
 		i++;
 	}
-}
-
-int	main(int ac, char **av)
-{
-	if (ac == 2)
-		repeat_alpha(av[1]);
-	write(1, "\n", 1);
-	return (0);
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }

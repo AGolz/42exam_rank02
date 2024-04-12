@@ -1,49 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   repeat_alpha.c                                     :+:      :+:    :+:   */
+/*   ft_rrange.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elmaksim <elmaksim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 05:09:12 by elmaksim          #+#    #+#             */
-/*   Updated: 2024/04/12 05:36:32 by elmaksim         ###   ########.fr       */
+/*   Created: 2024/04/12 07:22:36 by elmaksim          #+#    #+#             */
+/*   Updated: 2024/04/12 07:22:39 by elmaksim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
 
-void	repeat_alpha(char *str)
+int	*ft_rrange(int start, int end)
 {
+	int	*range;
+	int	len;
 	int	i;
-	int	n;
 
 	i = 0;
-	n = 0;
-	while (str[i])
+	if (start > end)
+		return (ft_rrange(end, start));
+	len = end - start + 1;
+	range = (int *)malloc(sizeof(int) * len);
+	if (range)
 	{
-		if (str[i] >= 'a' && str[i] <= 'z')
-			n = str[i] - 96;
-		else if (str[i] >= 'A' && str[i] <= 'Z')
-			n = str[i] - 64;
-		if (n != 0)
+		while (i < len)
 		{
-			while (n != 0)
-			{
-				write(1, &str[i], 1);
-				n--;
-			}
+			range[i] = end;
+			end--;
+			i++;
 		}
-		else
-			write(1, &str[i], 1);
-		n = 0;
-		i++;
 	}
-}
-
-int	main(int ac, char **av)
-{
-	if (ac == 2)
-		repeat_alpha(av[1]);
-	write(1, "\n", 1);
-	return (0);
+	return (range);
 }

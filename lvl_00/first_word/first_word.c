@@ -1,49 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   repeat_alpha.c                                     :+:      :+:    :+:   */
+/*   first_word.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elmaksim <elmaksim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 05:09:12 by elmaksim          #+#    #+#             */
-/*   Updated: 2024/04/12 05:36:32 by elmaksim         ###   ########.fr       */
+/*   Created: 2024/04/12 07:19:37 by elmaksim          #+#    #+#             */
+/*   Updated: 2024/04/12 07:22:10 by elmaksim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	repeat_alpha(char *str)
+void	first_word(char *str)
 {
-	int	i;
-	int	n;
-
-	i = 0;
-	n = 0;
-	while (str[i])
+	while (*str && (*str == ' ' || *str == '\t'))
+		str++;
+	while (*str && (*str != ' ' && *str != '\t'))
 	{
-		if (str[i] >= 'a' && str[i] <= 'z')
-			n = str[i] - 96;
-		else if (str[i] >= 'A' && str[i] <= 'Z')
-			n = str[i] - 64;
-		if (n != 0)
-		{
-			while (n != 0)
-			{
-				write(1, &str[i], 1);
-				n--;
-			}
-		}
-		else
-			write(1, &str[i], 1);
-		n = 0;
-		i++;
+		write(1, str, 1);
+		str++;
 	}
 }
 
 int	main(int ac, char **av)
 {
 	if (ac == 2)
-		repeat_alpha(av[1]);
+		first_word(av[1]);
 	write(1, "\n", 1);
 	return (0);
 }

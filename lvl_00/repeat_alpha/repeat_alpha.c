@@ -41,7 +41,7 @@ void	repeat_alpha(char *str)
 	}
 }
 
-intmain(int ac, char **av)
+int	main(int ac, char **av)
 {
 	if (ac == 2)
 		repeat_alpha(av[1]);

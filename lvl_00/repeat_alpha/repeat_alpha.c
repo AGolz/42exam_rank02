@@ -23,7 +23,7 @@ void	repeat_alpha(char *str)
 	while (str[i])
 	{
 		if (str[i] >= 'a' && str[i] <= 'z')
-			n = str[i] - 9;
+			n = str[i] - 96;
 		else if (str[i] >= 'A' && str[i] <= 'Z')
 			n = str[i] - 64;
 		if (n != 0)
